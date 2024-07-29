@@ -40,10 +40,10 @@ export const Colors = {
   },
   dark: {
     text: "#ECEDEE",
-    background: "#151718",
+    background: "#191970",
     tint: tintColorDark,
-    icon: "#9BA1A6",
-    tabIconDefault: "#9BA1A6",
+    icon: "#f3f6f4",
+    tabIconDefault: "#f3f6f4",
     tabIconSelected: tintColorDark,
   },
 };

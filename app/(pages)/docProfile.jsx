@@ -7,6 +7,7 @@ import {
   Button,
   Pressable,
   Touchable,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { Link, useLocalSearchParams, useNavigation } from "expo-router";
@@ -23,8 +24,8 @@ const DoctorProfile = () => {
   const { id } = useLocalSearchParams();
   const navigation = useNavigation();
 
-  const [doctorData, setDoctorData] = useState({});
-  const [clinicData, setClinicData] = useState({});
+  const [doctorData, setDoctorData] = useState([]);
+  const [clinicData, setClinicData] = useState(null);
   const [loading, setLoading] = useState(true);
 
   // console.log(id);
@@ -53,7 +54,8 @@ const DoctorProfile = () => {
   if (loading) {
     return (
       <View className="flex-1 justify-center items-center">
-        <Text>Loading...</Text>
+        {/* <Text>Loading...</Text> */}
+        <ActivityIndicator size="large" color="#006298" />
       </View>
     );
   }
@@ -71,7 +73,7 @@ const DoctorProfile = () => {
   // console.log(clinicData);
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-white">
       <Header title="" />
       <ScrollView>
         <View className="items-center bg-sky-200" style={{ width: "100%" }}>

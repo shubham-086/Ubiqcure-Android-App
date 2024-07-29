@@ -4,13 +4,14 @@ import {
   ThemeProvider,
 } from "@react-navigation/native";
 import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
+import { Stack, useNavigation } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { StyleSheet } from "react-native";
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -19,8 +20,8 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
     SpaceMono: require("../assets/fonts/SpaceMono-Regular.ttf"),
+    NotoSans: require("@/assets/fonts/NotoSans-Regular.ttf"),
   });
-
   useEffect(() => {
     if (loaded) {
       SplashScreen.hideAsync();
@@ -37,8 +38,7 @@ export default function RootLayout() {
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(drawer)" />
           <Stack.Screen name="(pages)/docProfile" />
-          {/* <Stack.Screen name="(pages)/clinicSlots" />
-          <Stack.Screen name="(pages)/patientDetailsForm" /> */}
+          <Stack.Screen name="(pages)/login" />
         </Stack>
       </SafeAreaView>
     </ThemeProvider>

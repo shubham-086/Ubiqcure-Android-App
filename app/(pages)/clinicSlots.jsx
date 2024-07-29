@@ -5,6 +5,7 @@ import {
   TextInput,
   ScrollView,
   TouchableOpacity,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import { useLocalSearchParams, useNavigation } from "expo-router";
@@ -16,7 +17,7 @@ import { AntDesign, Feather, MaterialCommunityIcons } from "@expo/vector-icons";
 const ClinicSlots = () => {
   const { clinicId, docId, clinicAddress, docName } = useLocalSearchParams();
   const [loading, setLoading] = useState(true);
-  const [slots, setSlots] = useState([]);
+  const [slots, setSlots] = useState(null);
   const [fomattedDate, setFormattedDate] = useState(new Date());
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
@@ -51,7 +52,8 @@ const ClinicSlots = () => {
   if (loading) {
     return (
       <View className="flex-1 justify-center items-center">
-        <Text>Loading...</Text>
+        {/* <Text>Loading...</Text> */}
+        <ActivityIndicator size="large" color="#006298" />
       </View>
     );
   }
@@ -78,7 +80,7 @@ const ClinicSlots = () => {
         className="mx-1"
       >
         <View
-          className="flex-col items-center mb-2 px-0 py-[0.5] bg-white border border-blue-400 rounded-md"
+          className="flex-col items-center mb-3 px-0 py-[0.5] bg-white border border-blue-400 rounded-md"
           style={{ width: 80 }}
         >
           <Text className="text-sm font-semibold text-primary">{`${hour12}:${minute} ${ampm}`}</Text>
@@ -89,7 +91,7 @@ const ClinicSlots = () => {
   };
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-white">
       <Header title={`Dr. ${docName}`} />
       <ScrollView>
         <Text className="m-4 text-lg font-semiboold">
@@ -135,7 +137,7 @@ const ClinicSlots = () => {
                 <Feather name="sunrise" size={20} color="gray" />
                 <Text className="text-lg text-gray-800 ml-3">Morning</Text>
               </View>
-              <View className="flex-row flex-wrap justify-evenly mt-3">
+              <View className="flex-row flex-wrap justify-start mt-3">
                 {morningSlots.map((slot, index) => (
                   <SlotButton
                     key={slot.SlotNumber}
@@ -152,7 +154,7 @@ const ClinicSlots = () => {
                 <Feather name="sun" size={20} color="gray" />
                 <Text className="text-lg text-gray-800 ml-3">Afternoon</Text>
               </View>
-              <View className="flex-row flex-wrap justify-start mt-3 w-full bg-slate-300">
+              <View className="flex-row flex-wrap justify-start mt-3">
                 {afternoonSlots.map((slot, index) => (
                   <SlotButton
                     key={slot.SlotNumber}
@@ -169,7 +171,7 @@ const ClinicSlots = () => {
                 <Feather name="sunset" size={20} color="gray" />
                 <Text className="text-lg text-gray-800 ml-3">Evening</Text>
               </View>
-              <View className="flex-row flex-wrap mt-3">
+              <View className="flex-row flex-wrap justify-start mt-3">
                 {eveningSlots.map((slot, index) => (
                   <SlotButton
                     key={slot.SlotNumber}

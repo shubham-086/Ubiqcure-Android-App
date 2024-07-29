@@ -12,14 +12,14 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import FeaturedDoctors from "@/components/FeaturedDoctors";
 import DrawerMenu from "@/components/DrawerMenu";
 import Whatsapp from "@/components/Whatsapp";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Link, useNavigation } from "expo-router";
+import { useNavigation } from "expo-router";
 
 export default function HomeScreen() {
   const [placeholder, setPlaceholder] = useState("Search for doctors");
   const navigation = useNavigation();
 
   useEffect(() => {
+    navigation.navigate("(pages)/login");
     const intervalId = setInterval(() => {
       setPlaceholder(
         placeholder === "Search for doctors"

@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 import Header from "@/components/Header";
@@ -73,7 +74,8 @@ const DoctorList = () => {
   if (loading) {
     return (
       <View className="flex-1 justify-center items-center">
-        <Text>Loading...</Text>
+        {/* <Text>Loading...</Text> */}
+        <ActivityIndicator size="large" color="#006298" />
       </View>
     );
   }
@@ -81,7 +83,7 @@ const DoctorList = () => {
   // console.log(data);
 
   return (
-    <View className="flex-1">
+    <View className="flex-1 bg-white">
       <Header title="Our Doctors" />
       <View className="flex-1 justify-center items-center">
         <View className="justify-center items-center">
